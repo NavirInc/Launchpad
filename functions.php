@@ -130,6 +130,7 @@ add_action( 'body_top', 'google_tag_manager_body' );
 // add_action( 'comment_form_before', 'THEMENAME_enqueue_comment_reply_script' );
 
 
+// // Sanitize file name. --> TO BE VALIDATED
 // add_filter('sanitize_file_name', 'remove_accents' );
 
 
