@@ -8,11 +8,16 @@
  * @since THEMENAME 0.0.0
  */
 
+
+/*
+ * ================================ THEME SETUP ===============================
+ * 
+ */
+
 if ( ! defined( 'THEMENAME_VERSION' ) ) {
     // Replace the version number of the theme on each release.
     define( 'THEMENAME_VERSION', '1.0.0' );
 }
-
 
 function THEMENAME_setup() {
 
@@ -31,7 +36,6 @@ function THEMENAME_setup() {
 }
 add_action( 'after_setup_theme', 'THEMENAME_setup' );
 
-
 // Enqueue style and script file.
 function THEMENAME_scripts() {
 
@@ -45,9 +49,13 @@ function THEMENAME_scripts() {
 add_action( 'wp_enqueue_scripts', 'THEMENAME_scripts' );
 
 
-// Use SMTP to send emails.
+/*
+ * ================================ SMTP EMAILS ===============================
+ * 
+ * Use SMTP to send emails.
+ */
 
-// Add this code to config.php, then delete.
+// To setup add this code to config.php, then delete.
 // define( 'SMTP_username', 'your-email@gmail.com' );
 // define( 'SMTP_password', 'your-gmail-app-password' );
 // define( 'SMTP_server', 'smtp.gmail.com' );
@@ -72,6 +80,12 @@ function my_phpmailer_smtp( $phpmailer ) {
 add_action( 'phpmailer_init', 'my_phpmailer_smtp' );
 
 
+/*
+ * ================================ SVG SUPPORT ===============================
+ * 
+ * Add SVG support.
+ */
+
 // Add SVG support. --> TO BE VALIDATED
 function enable_svg_support($mimes) {
     $mimes['svg'] = 'image/svg+xml';
@@ -95,7 +109,14 @@ function fix_svg_preview($response, $attachment, $meta) {
 add_filter('wp_prepare_attachment_for_js', 'fix_svg_preview', 10, 3);
 
 
-// Add Google Tag Manager javascript code as close to the opening <head> tag as possible
+/*
+ * ============================ GOOGLE TAG MANAGER ============================
+ * 
+ * Add Google Tag Manager javascript code as close to the opening <head> tag
+ * as possible and immediately after the opening <body> tag. Dont forget to
+ * change GTM ID.
+ */
+
 function google_tag_manager_head(){
 ?>
     <!-- Google Tag Manager --> <!-- CHANGE GTM ID AND DELETE THIS COMMENT -->
@@ -109,7 +130,6 @@ function google_tag_manager_head(){
 }
 add_action( 'wp_head', 'google_tag_manager_head', 10 );
 
-// Add Google Tag Manager noscript codeimmediately after the opening <body> tag
 function google_tag_manager_body(){
 ?>
     <!-- Google Tag Manager (noscript) --> <!-- CHANGE GTM ID AND DELETE THIS COMMENT -->
@@ -121,6 +141,14 @@ function google_tag_manager_body(){
 add_action( 'body_top', 'google_tag_manager_body' );
 
 
+/*
+ * ================================= COMMENTS =================================
+ * 
+ * Uncomment the proper section to activate or deactivate comments on the site.
+ */
+
+/* ----- To activate comments ----- */
+
 // // Support the new JavaScript functionality with comment threading
 // function THEMENAME_enqueue_comment_reply_script() {
 //     if ( get_option( 'thread_comments' ) ) {
@@ -129,6 +157,13 @@ add_action( 'body_top', 'google_tag_manager_body' );
 // }
 // add_action( 'comment_form_before', 'THEMENAME_enqueue_comment_reply_script' );
 
+/* ------ To globally deactivate comments ------ */
+
+
+/*
+ * =============================== MEDIA UPLOAD ===============================
+ * 
+ */
 
 // // Sanitize file name. --> TO BE VALIDATED
 // add_filter('sanitize_file_name', 'remove_accents' );
