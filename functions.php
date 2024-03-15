@@ -158,6 +158,7 @@ add_action( 'body_top', 'google_tag_manager_body' );
 // add_action( 'comment_form_before', 'THEMENAME_enqueue_comment_reply_script' );
 
 /* ------ To globally deactivate comments ------ */
+// See the code here (end of comment section): https://gist.github.com/mattclements/eab5ef656b2f946c4bfb
 
 
 /*
