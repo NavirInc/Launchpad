@@ -32,6 +32,7 @@ function THEMENAME_setup() {
 add_action( 'after_setup_theme', 'THEMENAME_setup' );
 
 
+// Enqueue style and script file.
 function THEMENAME_scripts() {
 
     // Style
@@ -42,6 +43,33 @@ function THEMENAME_scripts() {
 
 }
 add_action( 'wp_enqueue_scripts', 'THEMENAME_scripts' );
+
+
+// Use SMTP to send emails.
+
+// Add this code to config.php, then delete.
+// define( 'SMTP_username', 'your-email@gmail.com' );
+// define( 'SMTP_password', 'your-gmail-app-password' );
+// define( 'SMTP_server', 'smtp.gmail.com' );
+// define( 'SMTP_FROM', 'your-sender-email@gmail.com' );
+// define( 'SMTP_NAME', 'Your Name' );
+// define( 'SMTP_PORT', '587' );
+// define( 'SMTP_SECURE', 'tls' );
+// define( 'SMTP_AUTH', true );
+// define( 'SMTP_DEBUG', 0 );
+
+function my_phpmailer_smtp( $phpmailer ) {
+    $phpmailer->isSMTP();
+    $phpmailer->Host = SMTP_server;
+    $phpmailer->SMTPAuth = SMTP_AUTH;
+    $phpmailer->Port = SMTP_PORT;
+    $phpmailer->Username = SMTP_username;
+    $phpmailer->Password = SMTP_password;
+    $phpmailer->SMTPSecure = SMTP_SECURE;
+    $phpmailer->From = SMTP_FROM;
+    $phpmailer->FromName = SMTP_NAME;
+}
+add_action( 'phpmailer_init', 'my_phpmailer_smtp' );
 
 
 // // Support the new JavaScript functionality with comment threading
