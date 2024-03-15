@@ -72,6 +72,29 @@ function my_phpmailer_smtp( $phpmailer ) {
 add_action( 'phpmailer_init', 'my_phpmailer_smtp' );
 
 
+// Add SVG support. --> TO BE VALIDATED
+function enable_svg_support($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter('upload_mimes', 'enable_svg_support');
+
+// Fix SVG Display in the Media Library --> TO BE VALIDATED
+function fix_svg_preview($response, $attachment, $meta) {
+    if ($response['mime'] === 'image/svg+xml') {
+        $response['sizes'] = [
+            'thumbnail' => [
+                'url' => $response['url'],
+                'width' => $response['width'],
+                'height' => $response['height'],
+            ],
+        ];
+    }
+    return $response;
+}
+add_filter('wp_prepare_attachment_for_js', 'fix_svg_preview', 10, 3);
+
+
 // Add Google Tag Manager javascript code as close to the opening <head> tag as possible
 function google_tag_manager_head(){
 ?>
@@ -107,7 +130,6 @@ add_action( 'body_top', 'google_tag_manager_body' );
 // add_action( 'comment_form_before', 'THEMENAME_enqueue_comment_reply_script' );
 
 
-// // Sanitize file name. --->  LOOK IF THIS IS WORKING
 // add_filter('sanitize_file_name', 'remove_accents' );
 
 
