@@ -12,3 +12,12 @@
 
 <!doctype html>
 <!-- TBD -->
+
+
+
+
+
+<body <?php body_class(); ?>>
+<?php body_top(); ?>
+
+<!-- TBD -->

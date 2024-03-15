@@ -72,6 +72,32 @@ function my_phpmailer_smtp( $phpmailer ) {
 add_action( 'phpmailer_init', 'my_phpmailer_smtp' );
 
 
+// Add Google Tag Manager javascript code as close to the opening <head> tag as possible
+function google_tag_manager_head(){
+?>
+    <!-- Google Tag Manager --> <!-- CHANGE GTM ID AND DELETE THIS COMMENT -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXXX');</script>
+    <!-- End Google Tag Manager -->
+<?php 
+}
+add_action( 'wp_head', 'google_tag_manager_head', 10 );
+
+// Add Google Tag Manager noscript codeimmediately after the opening <body> tag
+function google_tag_manager_body(){
+?>
+    <!-- Google Tag Manager (noscript) --> <!-- CHANGE GTM ID AND DELETE THIS COMMENT -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXXX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+<?php 
+}
+add_action( 'body_top', 'google_tag_manager_body' );
+
+
 // // Support the new JavaScript functionality with comment threading
 // function THEMENAME_enqueue_comment_reply_script() {
 //     if ( get_option( 'thread_comments' ) ) {
@@ -83,3 +109,5 @@ add_action( 'phpmailer_init', 'my_phpmailer_smtp' );
 
 // // Sanitize file name. --->  LOOK IF THIS IS WORKING
 // add_filter('sanitize_file_name', 'remove_accents' );
+
+
