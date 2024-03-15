@@ -1,7 +1,11 @@
 <?php
 /**
- * The template for displaying the footer
+ * The template for displaying the footer. This file includes the closing tag
+ * for the main content section and contains footer content such as copyright
+ * information, site credits, and any additional footer widgets or menus. 
  *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ * 
  * @package THEMENAME
  * @since THEMENAME 0.0.0
  */
