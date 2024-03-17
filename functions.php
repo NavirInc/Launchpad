@@ -182,7 +182,7 @@ remove_role( 'editor' );
 remove_role( 'contributor' );
 remove_role( 'author' );
 
-// Add new role
+// Add new role  ---> TBD
 add_role('proprietaire', 'Propriétaire', array(
     'read' => true,
     'create_posts' => true,
