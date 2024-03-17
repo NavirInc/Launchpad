@@ -170,3 +170,24 @@ add_action( 'body_top', 'google_tag_manager_body' );
 // add_filter('sanitize_file_name', 'remove_accents' );
 
 
+/*
+ * ========================== ROLES AND CAPABILITIES ==========================
+ * 
+ * Execute this code one time only to configure the roles and capabilities.
+ */
+
+// Remove default roles
+remove_role( 'subscriber' );
+remove_role( 'editor' );
+remove_role( 'contributor' );
+remove_role( 'author' );
+
+// Add new role
+add_role('proprietaire', 'Propriétaire', array(
+    'read' => true,
+    'create_posts' => true,
+    'edit_posts' => true,
+    'edit_others_posts' => true,
+    'publish_posts' => true,
+    'manage_categories' => true,
+));
