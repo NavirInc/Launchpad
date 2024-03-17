@@ -174,6 +174,7 @@ add_action( 'body_top', 'google_tag_manager_body' );
  * ========================== ROLES AND CAPABILITIES ==========================
  * 
  * Execute this code one time only to configure the roles and capabilities.
+ * https://codex.wordpress.org/Roles_and_Capabilities
  */
 
 // Remove default roles
