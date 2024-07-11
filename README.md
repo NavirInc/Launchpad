@@ -6,6 +6,8 @@ Launchpad is a lightweight Starter Theme for WordPress.
 
 - In each file, search and replace "THEMENAME" with the name of the theme.
 
+TBD
+
 
 ## Workflow
 
