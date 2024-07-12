@@ -30,8 +30,19 @@ function THEMENAME_setup() {
     // Enable support for Post Thumbnails on posts and pages. Specify which post type. https://developer.wordpress.org/reference/functions/add_theme_support/
     add_theme_support( 'post-thumbnails', array( 'post' ) );
 
-    // // Add default posts and comments RSS feed links to head.
-	// add_theme_support( 'automatic-feed-links' );
+    // Switch default core markup for search form, comment form, and comments to output valid HTML5.
+    add_theme_support(
+		'html5',
+		array(
+			'search-form',
+			'comment-form',
+			'comment-list',
+			'gallery',
+			'caption',
+			'style',
+			'script',
+		)
+	);
 
 }
 add_action( 'after_setup_theme', 'THEMENAME_setup' );
@@ -55,7 +66,7 @@ add_action( 'wp_enqueue_scripts', 'THEMENAME_scripts' );
  * Use SMTP to send emails.
  */
 
-// To setup add this code to config.php, then delete.
+// // To setup, add this code to config.php, then delete.
 // define( 'SMTP_username', 'your-email@gmail.com' );
 // define( 'SMTP_password', 'your-gmail-app-password' );
 // define( 'SMTP_server', 'smtp.gmail.com' );
@@ -66,18 +77,18 @@ add_action( 'wp_enqueue_scripts', 'THEMENAME_scripts' );
 // define( 'SMTP_AUTH', true );
 // define( 'SMTP_DEBUG', 0 );
 
-function my_phpmailer_smtp( $phpmailer ) {
-    $phpmailer->isSMTP();
-    $phpmailer->Host = SMTP_server;
-    $phpmailer->SMTPAuth = SMTP_AUTH;
-    $phpmailer->Port = SMTP_PORT;
-    $phpmailer->Username = SMTP_username;
-    $phpmailer->Password = SMTP_password;
-    $phpmailer->SMTPSecure = SMTP_SECURE;
-    $phpmailer->From = SMTP_FROM;
-    $phpmailer->FromName = SMTP_NAME;
-}
-add_action( 'phpmailer_init', 'my_phpmailer_smtp' );
+// function my_phpmailer_smtp( $phpmailer ) {
+//     $phpmailer->isSMTP();
+//     $phpmailer->Host = SMTP_server;
+//     $phpmailer->SMTPAuth = SMTP_AUTH;
+//     $phpmailer->Port = SMTP_PORT;
+//     $phpmailer->Username = SMTP_username;
+//     $phpmailer->Password = SMTP_password;
+//     $phpmailer->SMTPSecure = SMTP_SECURE;
+//     $phpmailer->From = SMTP_FROM;
+//     $phpmailer->FromName = SMTP_NAME;
+// }
+// add_action( 'phpmailer_init', 'my_phpmailer_smtp' );
 
 
 /*
@@ -114,7 +125,7 @@ add_filter('wp_prepare_attachment_for_js', 'fix_svg_preview', 10, 3);
  * 
  * Add Google Tag Manager javascript code as close to the opening <head> tag
  * as possible and immediately after the opening <body> tag. Dont forget to
- * change GTM ID.
+ * change GTM ID. If a cookie banner plugin is used, delete this section.
  */
 
 function google_tag_manager_head(){
@@ -224,26 +235,111 @@ function remove_toolbar_items( $bar )
 	}
 }
 
+/*
+ * ============================== DISABLE EMOJIS ==============================
+ * 
+ * From the work of David Peach.
+ * https://gist.github.com/davidpeach/39d9de2f3e8f4ca841771727edb75098
+ */
+
+ function disable_emojis() {
+    remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+    remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+    remove_action( 'wp_print_styles', 'print_emoji_styles' );
+    remove_action( 'admin_print_styles', 'print_emoji_styles' );
+    remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+    remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+    remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+    add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
+    add_filter( 'wp_resource_hints', 'disable_emojis_remove_dns_prefetch', 10, 2 );
+}
+add_action( 'init', 'disable_emojis' );
+
+function disable_emojis_tinymce( $plugins ) {
+    if ( is_array( $plugins ) ) {
+        return array_diff( $plugins, array( 'wpemoji' ) );
+    } else {
+        return array();
+    }
+}
+
+function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
+    if ( 'dns-prefetch' == $relation_type ) {
+        /** This filter is documented in wp-includes/formatting.php */
+        $emoji_svg_url = apply_filters( 'emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/' );
+
+        $urls = array_diff( $urls, array( $emoji_svg_url ) );
+    }
+
+    return $urls;
+}
+
 
 /*
  * ========================== ROLES AND CAPABILITIES ==========================
  * 
- * Execute this code one time only to configure the roles and capabilities.
+ * If necessary, execute this code one time only to configure the roles and capabilities, then delete this section.
  * https://codex.wordpress.org/Roles_and_Capabilities
  */
 
-// Remove default roles
-remove_role( 'subscriber' );
-remove_role( 'editor' );
-remove_role( 'contributor' );
-remove_role( 'author' );
+// // Remove default roles
+// remove_role( 'subscriber' );
+// remove_role( 'editor' );
+// remove_role( 'contributor' );
+// remove_role( 'author' );
 
-// Add new role  ---> TBD
-add_role('proprietaire', 'Propriétaire', array(
-    'read' => true,
-    'create_posts' => true,
-    'edit_posts' => true,
-    'edit_others_posts' => true,
-    'publish_posts' => true,
-    'manage_categories' => true,
-));
+// // Add new role - Change the role name and capalities before executing.
+// add_role('role', 'Role', array(
+//     'activate_plugins' => true,
+//     'delete_others_pages' => true,
+//     'delete_others_posts' => true,
+//     'delete_pages' => true,
+//     'delete_posts' => true,
+//     'delete_private_pages' => true,
+//     'delete_private_posts' => true,
+//     'delete_published_pages' => true,
+//     'delete_published_posts' => true,
+//     'edit_dashboard' => true,
+//     'edit_others_pages' => true,
+//     'edit_others_posts' => true,
+//     'edit_pages' => true,
+//     'edit_posts' => true,
+//     'edit_private_pages' => true,
+//     'edit_private_posts' => true,
+//     'edit_published_pages' => true,
+//     'edit_published_posts' => true,
+//     'edit_theme_options' => true,
+//     'export' => true,
+//     'import' => true,
+//     'list_users' => true,
+//     'manage_categories' => true,
+//     'manage_links' => true,
+//     'manage_options' => true,
+//     'moderate_comments' => true,
+//     'promote_users' => true,
+//     'publish_pages' => true,
+//     'publish_posts' => true,
+//     'read_private_pages' => true,
+//     'read_private_posts' => true,
+//     'read' => true,
+//     'remove_users' => true,
+//     'switch_themes' => true,
+//     'upload_files' => true,
+//     'customize' => true,
+//     'delete_site' => true,
+//     'update_core' => true,
+//     'update_plugins' => true,
+//     'update_themes' => true,
+//     'install_plugins' => true,
+//     'install_themes' => true,
+//     'delete_themes' => true,
+//     'delete_plugins' => true,
+//     'edit_plugins' => true,
+//     'edit_themes' => true,
+//     'edit_files' => true,
+//     'edit_users' => true,
+//     'add_users' => true,
+//     'create_users' => true,
+//     'delete_users' => true,
+//     'unfiltered_html' => true,
+// ));
