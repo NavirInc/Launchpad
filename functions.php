@@ -1,11 +1,11 @@
 <?php
 /**
- * THEMENAME functions and definitions
+ * launchpad functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package THEMENAME
- * @since THEMENAME 0.0.0
+ * @package launchpad
+ * @since launchpad 0.0.0
  */
 
 
@@ -14,15 +14,15 @@
  * 
  */
 
-if ( ! defined( 'THEMENAME_VERSION' ) ) {
+if ( ! defined( 'LAUNCHPAD_VERSION' ) ) {
     // Replace the version number of the theme on each release.
-    define( 'THEMENAME_VERSION', '1.0.0' );
+    define( 'LAUNCHPAD_VERSION', '0.0.0' );
 }
 
-function THEMENAME_setup() {
+function launchpad_setup() {
 
     // Make theme available for translation.
-    load_theme_textdomain( 'THEMENAME', get_template_directory() . '/languages' );
+    load_theme_textdomain( 'launchpad', get_template_directory() . '/languages' );
 
     // Let WordPress manage the document title.
     add_theme_support( 'title-tag' );
@@ -45,19 +45,19 @@ function THEMENAME_setup() {
 	);
 
 }
-add_action( 'after_setup_theme', 'THEMENAME_setup' );
+add_action( 'after_setup_theme', 'launchpad_setup' );
 
 // Enqueue style and script file.
-function THEMENAME_scripts() {
+function launchpad_scripts() {
 
     // Style
-    wp_enqueue_style( 'style', get_template_directory_uri() . '/style.min.css', array(), THEMENAME_VERSION, 'all' );
+    wp_enqueue_style( 'style', get_template_directory_uri() . '/style.css', array(), LAUNCHPAD_VERSION, 'all' );
 
     // Script
-    wp_enqueue_script( 'main', $this->appConfig['template_url']['assets']['js'] . '/main.min.js', array(), TEMPLATE_VERSION, true );
+    wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/js/main.min.js', array(), LAUNCHPAD_VERSION, true );
 
 }
-add_action( 'wp_enqueue_scripts', 'THEMENAME_scripts' );
+add_action( 'wp_enqueue_scripts', 'launchpad_scripts' );
 
 
 /*
@@ -151,6 +151,18 @@ function google_tag_manager_body(){
 }
 add_action( 'body_top', 'google_tag_manager_body' );
 
+/*
+ * ================================ ADMIN MENU ================================
+ * 
+ * Uncomment the proper section.
+ */
+
+// function menu_modification() {
+//     remove_menu_page('edit.php'); // Remove "Post" from admin menu.
+//     // Add other modification here.
+// }
+// add_action('admin_menu', 'menu_modification');
+
 
 /*
  * ================================= COMMENTS =================================
@@ -161,12 +173,12 @@ add_action( 'body_top', 'google_tag_manager_body' );
 /* ----- To activate comments ----- */
 
 // // Support the new JavaScript functionality with comment threading
-// function THEMENAME_enqueue_comment_reply_script() {
+// function lunchpad_enqueue_comment_reply_script() {
 //     if ( get_option( 'thread_comments' ) ) {
 //         wp_enqueue_script( 'comment-reply' );
 //     }
 // }
-// add_action( 'comment_form_before', 'THEMENAME_enqueue_comment_reply_script' );
+// add_action( 'comment_form_before', 'lunchpad_enqueue_comment_reply_script' );
 
 /* ------ To globally deactivate comments ------ */
 //See the code here (end of comment section): https://gist.github.com/mattclements/eab5ef656b2f946c4bfb
@@ -288,58 +300,58 @@ function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
 // remove_role( 'contributor' );
 // remove_role( 'author' );
 
-// // Add new role - Change the role name and capalities before executing.
-// add_role('role', 'Role', array(
-//     'activate_plugins' => true,
-//     'delete_others_pages' => true,
-//     'delete_others_posts' => true,
-//     'delete_pages' => true,
-//     'delete_posts' => true,
-//     'delete_private_pages' => true,
-//     'delete_private_posts' => true,
-//     'delete_published_pages' => true,
-//     'delete_published_posts' => true,
-//     'edit_dashboard' => true,
-//     'edit_others_pages' => true,
-//     'edit_others_posts' => true,
-//     'edit_pages' => true,
-//     'edit_posts' => true,
-//     'edit_private_pages' => true,
-//     'edit_private_posts' => true,
-//     'edit_published_pages' => true,
-//     'edit_published_posts' => true,
-//     'edit_theme_options' => true,
-//     'export' => true,
-//     'import' => true,
-//     'list_users' => true,
-//     'manage_categories' => true,
-//     'manage_links' => true,
-//     'manage_options' => true,
-//     'moderate_comments' => true,
-//     'promote_users' => true,
-//     'publish_pages' => true,
-//     'publish_posts' => true,
-//     'read_private_pages' => true,
-//     'read_private_posts' => true,
-//     'read' => true,
-//     'remove_users' => true,
-//     'switch_themes' => true,
-//     'upload_files' => true,
-//     'customize' => true,
-//     'delete_site' => true,
-//     'update_core' => true,
-//     'update_plugins' => true,
-//     'update_themes' => true,
-//     'install_plugins' => true,
-//     'install_themes' => true,
-//     'delete_themes' => true,
-//     'delete_plugins' => true,
-//     'edit_plugins' => true,
-//     'edit_themes' => true,
-//     'edit_files' => true,
-//     'edit_users' => true,
-//     'add_users' => true,
-//     'create_users' => true,
-//     'delete_users' => true,
-//     'unfiltered_html' => true,
-// ));
+// Add new role - Change the role name and capalities before executing.
+add_role('role', 'Role', array(
+    'activate_plugins' => true,
+    'delete_others_pages' => true,
+    'delete_others_posts' => true,
+    'delete_pages' => true,
+    'delete_posts' => true,
+    'delete_private_pages' => true,
+    'delete_private_posts' => true,
+    'delete_published_pages' => true,
+    'delete_published_posts' => true,
+    'edit_dashboard' => true,
+    'edit_others_pages' => true,
+    'edit_others_posts' => true,
+    'edit_pages' => true,
+    'edit_posts' => true,
+    'edit_private_pages' => true,
+    'edit_private_posts' => true,
+    'edit_published_pages' => true,
+    'edit_published_posts' => true,
+    'edit_theme_options' => true,
+    'export' => true,
+    'import' => true,
+    'list_users' => true,
+    'manage_categories' => true,
+    'manage_links' => true,
+    'manage_options' => true,
+    'moderate_comments' => true,
+    'promote_users' => true,
+    'publish_pages' => true,
+    'publish_posts' => true,
+    'read_private_pages' => true,
+    'read_private_posts' => true,
+    'read' => true,
+    'remove_users' => true,
+    'switch_themes' => true,
+    'upload_files' => true,
+    'customize' => true,
+    'delete_site' => true,
+    'update_core' => true,
+    'update_plugins' => true,
+    'update_themes' => true,
+    'install_plugins' => true,
+    'install_themes' => true,
+    'delete_themes' => true,
+    'delete_plugins' => true,
+    'edit_plugins' => true,
+    'edit_themes' => true,
+    'edit_files' => true,
+    'edit_users' => true,
+    'add_users' => true,
+    'create_users' => true,
+    'delete_users' => true,
+    'unfiltered_html' => true,
+));

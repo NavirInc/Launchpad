@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for all pages.
+ * The template for the home page pages.
  * 
  * @package launchpad
  * @since launchpad 0.0.0

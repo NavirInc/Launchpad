@@ -5,8 +5,8 @@
  * content or scripts. It sets the overall structure and appearance of
  * the site's header.
  *
- * @package THEMENAME
- * @since THEMENAME 0.0.0
+ * @package launchpad
+ * @since launchpad 0.0.0
  */
 ?>
 
@@ -21,7 +21,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-<?php body_top(); ?>
+<?php do_action('body_top'); ?>
 
     <header>
         
@@ -30,7 +30,7 @@
         <nav>
 
             <!-- CONTENT HERE -->
-             
+
         </nav>
 
         <!-- CONTENT HERE -->

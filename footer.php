@@ -6,13 +6,15 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  * 
- * @package THEMENAME
- * @since THEMENAME 0.0.0
+ * @package launchpad
+ * @since launchpad 0.0.0
  */
 ?>
 
     <footer>
+
         <!-- CONTENT HERE -->
+
     </footer>
 
 <?php wp_footer();?>
