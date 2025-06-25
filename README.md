@@ -47,14 +47,14 @@ A clean, lightweight foundation for building custom WordPress themes.
 ├── header.php
 ├── footer.php
 ├── functions.php
-├── style.min.css
+├── style.css
 ├── screenshot.png
 └── README.md
 
 
 ## Workflow
 To compile and minify the style.scss file, use this command in the theme folder.
-```sass src/scss/style.scss style.min.css --style compressed --no-source-map```
+```sass src/scss/style.scss style.css --style compressed --no-source-map```
 
 To minify the main.js file, use this command in the theme folder.
 ```terser src/js/main.js --output assets/js/main.min.js --compress --mangle```
