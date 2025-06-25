@@ -1,0 +1,1 @@
+After confirming that the license permits hosting fonts on the server, include them in this folder.

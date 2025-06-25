@@ -1,0 +1,1 @@
+Place theme-specific images (not content images) in this folder.
