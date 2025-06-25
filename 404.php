@@ -5,8 +5,8 @@
  * search form or links to help users navigate the site and provides a
  * user-friendly message indicating the page is not available.
  * 
- * @package launchpad
- * @since launchpad 0.0.0
+ * @package Theme_Name
+ * @since Theme_Name 0.0.0
  */
 get_header(); ?>
 

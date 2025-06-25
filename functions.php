@@ -1,11 +1,11 @@
 <?php
 /**
- * launchpad functions and definitions
+ * Theme Name functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package launchpad
- * @since launchpad 0.0.0
+ * @package Theme_Name
+ * @since Theme_Name 0.0.0
  */
 
 
@@ -14,15 +14,15 @@
  * 
  */
 
-if ( ! defined( 'LAUNCHPAD_VERSION' ) ) {
+if ( ! defined( 'THEMENAME_VERSION' ) ) {
     // Replace the version number of the theme on each release.
-    define( 'LAUNCHPAD_VERSION', '0.0.0' );
+    define( 'THEMENAME_VERSION', '0.0.0' );
 }
 
-function launchpad_setup() {
+function themename_setup() {
 
     // Make theme available for translation.
-    load_theme_textdomain( 'launchpad', get_template_directory() . '/languages' );
+    load_theme_textdomain( 'theme-name', get_template_directory() . '/languages' );
 
     // Let WordPress manage the document title.
     add_theme_support( 'title-tag' );
@@ -45,19 +45,19 @@ function launchpad_setup() {
 	);
 
 }
-add_action( 'after_setup_theme', 'launchpad_setup' );
+add_action( 'after_setup_theme', 'themename_setup' );
 
 // Enqueue style and script file.
-function launchpad_scripts() {
+function themename_scripts() {
 
     // Style
-    wp_enqueue_style( 'style', get_template_directory_uri() . '/style.min.css', array(), LAUNCHPAD_VERSION, 'all' );
+    wp_enqueue_style( 'style', get_template_directory_uri() . '/style.min.css', array(), THEMENAME_VERSION, 'all' );
 
     // Script
-    wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/js/main.min.js', array(), LAUNCHPAD_VERSION, true );
+    wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/js/main.min.js', array(), THEMENAME_VERSION, true );
 
 }
-add_action( 'wp_enqueue_scripts', 'launchpad_scripts' );
+add_action( 'wp_enqueue_scripts', 'themename_scripts' );
 
 
 /*

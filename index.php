@@ -2,8 +2,8 @@
 /**
  * The template for the home page pages.
  * 
- * @package launchpad
- * @since launchpad 0.0.0
+ * @package Theme_Name
+ * @since Theme_Name 0.0.0
  */
 get_header(); ?>
 
