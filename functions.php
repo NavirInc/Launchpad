@@ -126,11 +126,11 @@ add_filter('wp_prepare_attachment_for_js', 'fix_svg_preview', 10, 3);
  * Uncomment the proper section.
  */
 
-// function menu_modification() {
-//     remove_menu_page('edit.php'); // Remove "Post" from admin menu.
-//     // Add other modification here.
-// }
-// add_action('admin_menu', 'menu_modification');
+function menu_modification() {
+    //remove_menu_page('edit.php'); // Remove "Post" from admin menu.
+    // Add other modification here.
+}
+add_action('admin_menu', 'menu_modification');
 
 
 /*

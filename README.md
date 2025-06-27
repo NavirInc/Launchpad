@@ -23,7 +23,6 @@ A clean, lightweight foundation for building custom WordPress themes.
     - At the end of this file
     - In the LICENSE.txt file
     - At the beginning of the style.scss file
-- Generate a screenshot.png at the end of development.
 - Your canvas is ready - time to create!
 
 ## File Structure
@@ -51,7 +50,6 @@ A clean, lightweight foundation for building custom WordPress themes.
 ├── screenshot.png
 └── README.md
 
-
 ## Workflow
 To compile and minify the style.scss file, use this command in the theme folder.
 ```sass src/scss/style.scss style.css --style compressed --no-source-map```
@@ -61,3 +59,9 @@ To minify the main.js file, use this command in the theme folder.
 
 ## License
 This project is licensed under the MIT License - see LICENSE.txt for details.
+
+## wp-config.php
+Add these lines to wp-config.php.
+
+/** Disable WordPress file editor for security */
+define('DISALLOW_FILE_EDIT', true);
