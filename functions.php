@@ -51,7 +51,7 @@ add_action( 'after_setup_theme', 'themename_setup' );
 function themename_scripts() {
 
     // Style
-    wp_enqueue_style( 'style', get_template_directory_uri() . '/style.min.css', array(), THEMENAME_VERSION, 'all' );
+    wp_enqueue_style( 'style', get_template_directory_uri() . '/style.css', array(), THEMENAME_VERSION, 'all' );
 
     // Script
     wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/js/main.min.js', array(), THEMENAME_VERSION, true );
