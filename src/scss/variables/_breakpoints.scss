@@ -1,0 +1,36 @@
+@use "sass:map";
+
+// Breakpoint variables
+$breakpoints: (
+	xxs: 415px,
+	xs: 480px,
+	sm: 768px,
+	md: 1024px,
+	lg: 1280px,
+	xl: 1440px,
+	xxl: 2400px
+);
+
+// Breakpoint mixin
+// Usage:
+//   @include breakpoint(md) { ... }             // min-width: 1024px and up
+//   @include breakpoint(xs, max) { ... }        // max-width: 479px (below 480px)
+@mixin breakpoint($breakpoint, $direction: min) {
+	$value: map.get($breakpoints, $breakpoint);
+
+	@if $value {
+		@if $direction == max {
+			@media (max-width: ($value - 1)) {
+				@content;
+			}
+		}
+		@else {
+			@media (min-width: $value) {
+				@content;
+			}
+		}
+	}
+	@else {
+		@warn "Breakpoint #{$breakpoint} not found in $breakpoints map.";
+	}
+}

@@ -1,0 +1,46 @@
+$container-xl: 1600px;
+$container-lg-max-width: 1200px;
+$container-sm-max-width: 800px;
+$container-xs-max-width: 680px;
+
+// Base container mixin
+@mixin container($max-width: $container-xl) {
+	width: 100%;
+	max-width: $max-width;
+	margin: 0 auto;
+	padding: 0 1.25rem;
+}
+
+// Specific container mixins
+@mixin container-xl {
+	@include container($container-xl);
+}
+
+@mixin container-lg {
+	@include container($container-lg-max-width);
+}
+
+@mixin container-sm {
+	@include container($container-sm-max-width);
+}
+
+@mixin container-xs {
+	@include container($container-xs-max-width);
+}
+
+// CSS Classes
+.container-xl {
+	@include container-xl;
+}
+
+.container-lg {
+	@include container-lg;
+}
+
+.container-sm {
+	@include container-sm;
+}
+
+.container-xs {
+	@include container-xs;
+}
