@@ -9,6 +9,9 @@
  * @package Theme_Name
  * @since Theme_Name 0.0.0
  */
+
+defined('ABSPATH') || exit;
+
 ?>
 
     <footer>

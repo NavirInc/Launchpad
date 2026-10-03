@@ -7,6 +7,9 @@
  *
  * To access argument, use the variables $var1 and $var2, etc.
  */
+
+defined('ABSPATH') || exit;
+
 ?>
 
 <!-- CONTENT HERE -->
