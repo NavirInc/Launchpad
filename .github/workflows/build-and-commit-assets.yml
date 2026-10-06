@@ -3,7 +3,8 @@ name: Build and commit assets
 on:
   push:
     branches:
-      - 'development'
+      - '**'
+      - '!production'
   workflow_dispatch:
 
 concurrency:
