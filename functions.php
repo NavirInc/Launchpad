@@ -1,7 +1,8 @@
 <?php
 /**
- * @package Theme_Name
- * @since Theme_Name 0.0.0
+ * This file loads the theme's core includes, initializes the theme,
+ * and registers required functionality such as menus, assets, metaboxes,
+ * and WordPress cleanup features.
  */
 
 defined('ABSPATH') || exit;
@@ -10,11 +11,11 @@ $launchpad_includes = [
     'setup',
     'enqueue',
     'admin-menu',
-    'gutenberg',  //TBD
     'metabox/post-types',  //TBD
     'metabox/fields',  //TBD
     'utils/svg-support', //TBD
     'utils/smtp-phpmailer',  //TBD
+    'utils/disable-gutenberg',  //TBD
     'utils/disable-comments',  //TBD
     'utils/disable-emojis',  //TBD
 ];

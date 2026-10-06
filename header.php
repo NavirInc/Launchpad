@@ -4,9 +4,6 @@
  * head section, site branding, navigation menu, and any additional header
  * content or scripts. It sets the overall structure and appearance of
  * the site's header.
- *
- * @package Theme_Name
- * @since Theme_Name 0.0.0
  */
 
 defined('ABSPATH') || exit;
